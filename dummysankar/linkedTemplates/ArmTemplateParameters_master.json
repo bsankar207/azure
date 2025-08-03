@@ -20,6 +20,9 @@
 		"AmazonS32_properties_typeProperties_accessKeyId": {
 			"value": "AKIA2S23M65GTII4ZF47"
 		},
+		"MyKeyVault_properties_typeProperties_baseUrl": {
+			"value": "https://AdfDatabricks.vault.azure.net/"
+		},
 		"containerUri": {
 			"value": ""
 		},

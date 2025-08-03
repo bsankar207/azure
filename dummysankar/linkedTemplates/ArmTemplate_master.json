@@ -27,6 +27,10 @@
 			"type": "string",
 			"defaultValue": "AKIA2S23M65GTII4ZF47"
 		},
+		"MyKeyVault_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://AdfDatabricks.vault.azure.net/"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -68,6 +72,9 @@
 					},
 					"AmazonS32_properties_typeProperties_accessKeyId": {
 						"value": "[parameters('AmazonS32_properties_typeProperties_accessKeyId')]"
+					},
+					"MyKeyVault_properties_typeProperties_baseUrl": {
+						"value": "[parameters('MyKeyVault_properties_typeProperties_baseUrl')]"
 					}
 				}
 			},

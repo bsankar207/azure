@@ -26,6 +26,10 @@
 		"AmazonS32_properties_typeProperties_accessKeyId": {
 			"type": "string",
 			"defaultValue": "AKIA2S23M65GTII4ZF47"
+		},
+		"MyKeyVault_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://AdfDatabricks.vault.azure.net/"
 		}
 	},
 	"variables": {
@@ -79,6 +83,19 @@
 				"type": "AzureBlobStorage",
 				"typeProperties": {
 					"connectionString": "[parameters('AzureBlobStorage1_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/MyKeyVault')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureKeyVault",
+				"typeProperties": {
+					"baseUrl": "[parameters('MyKeyVault_properties_typeProperties_baseUrl')]"
 				}
 			},
 			"dependsOn": []
@@ -219,6 +236,35 @@
 								"parameters": {}
 							}
 						]
+					},
+					{
+						"name": "RunDatabricksJob",
+						"type": "WebActivity",
+						"dependsOn": [
+							{
+								"activity": "Copy_ieg",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"method": "POST",
+							"headers": {},
+							"url": "https://dbc-29254c33-0fad.cloud.databricks.com/jobs/640283835883821?o=3141584499877094",
+							"body": {
+								"Authorization": "Bearer @Microsoft.KeyVault(MyKeyVault, Databricks-Token)",
+								"Content-Type": "application/json"
+							}
+						}
 					}
 				],
 				"policy": {
