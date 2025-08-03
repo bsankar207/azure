@@ -1,0 +1,6 @@
+{
+	"name": "MacMysqlToAzure",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}
