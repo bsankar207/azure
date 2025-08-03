@@ -12,7 +12,8 @@
 				"type": "AmazonS3Location",
 				"bucketName": "s3-to-azure-sankar"
 			},
-			"columnDelimiter": ",",
+			"columnDelimiter": "\u0001",
+			"rowDelimiter": "",
 			"escapeChar": "\\",
 			"firstRowAsHeader": false,
 			"quoteChar": null
