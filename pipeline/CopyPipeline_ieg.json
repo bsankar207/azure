@@ -72,6 +72,34 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "RunDatabricksJob",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "Copy_ieg",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "POST",
+					"url": "https://dbc-29254c33-0fad.cloud.databricks.com/jobs/640283835883821?o=3141584499877094",
+					"body": {
+						"Authorization": "Bearer @Microsoft.KeyVault(MyKeyVault, Databricks-Token)",
+						"Content-Type": "application/json"
+					}
+				}
 			}
 		],
 		"annotations": []
