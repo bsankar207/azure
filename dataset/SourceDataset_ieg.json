@@ -1,0 +1,26 @@
+{
+	"name": "SourceDataset_ieg",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AmazonS32",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AmazonS3Location",
+				"bucketName": "s3-to-azure-sankar"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": false,
+			"quoteChar": null
+		},
+		"schema": [
+			{
+				"type": "String"
+			}
+		]
+	}
+}
